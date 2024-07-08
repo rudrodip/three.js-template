@@ -13,7 +13,6 @@ Tech stack:
 ## How to use
 
 > [!Note]
-> 
 > You can use any package manager you want. I'm using `bun` here. If you want to use `npm` or `yarn`, you can replace `bun` with `npm` or `yarn` in the commands.
 
 1. Clone the repository
@@ -38,8 +37,7 @@ Tech stack:
 
 Check the `package.json` file for more commands.
 
-> [!Info]
->
+> [!Tip]
 > Check out other branches for more templates.
 
 ## License
