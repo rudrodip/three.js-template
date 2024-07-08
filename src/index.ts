@@ -9,31 +9,31 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(3, 2, 3);
+camera.position.set(-2, 3, 3);
 
 // Add orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.update();
 
-// Axes helper
-const axesHelper = new THREE.AxesHelper(5);
-scene.add(axesHelper);
-
-// Grid helper
-const gridHelper = new THREE.GridHelper(30, 30);
-scene.add(gridHelper);
+// Load texture
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load('/earth-day-map.jpg');
 
 // Create a cube
-const boxGeometry = new THREE.BoxGeometry();
-const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const box = new THREE.Mesh(boxGeometry, boxMaterial);
+const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+const sphereMaterial = new THREE.MeshStandardMaterial({ map: texture });
+const planet = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-scene.add(box);
+// Add light
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 5, 5);
+
+scene.add(planet);
+scene.add(light);
 
 function animate() {
-  box.rotation.x += 0.01;
-  box.rotation.y += 0.01;
-
+  planet.rotation.y += 0.01;
+  
   renderer.render(scene, camera);
 }
 
