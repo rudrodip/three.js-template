@@ -38,6 +38,10 @@ Tech stack:
 
 Check the `package.json` file for more commands.
 
+> [!Info]
+>
+> Check out other branches for more templates.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE.md) file for more information.
