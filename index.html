@@ -10,23 +10,5 @@
   <body>
     <canvas id="webgl"></canvas>
     <script type="module" src="/src/index.ts"></script>
-    <script id="vertex-shader" type="vertex">
-      uniform float u_time;
-
-      void main() {
-        float newX = sin(position.x * u_time) * sin(position.y * u_time);
-        vec3 newPosition = vec3(newX, position.y, position.z);
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    </script>
-    <script id="fragment-shader" type="fragment">
-      uniform float u_time;
-      uniform vec2 u_resolution;
-      uniform vec2 u_mouse;
-      void main() {
-        vec2 st = gl_FragCoord.xy / u_resolution;
-        gl_FragColor = vec4(sin(u_time), u_mouse.x, st.y, 1.0);
-      }
-    </script>
   </body>
 </html>
