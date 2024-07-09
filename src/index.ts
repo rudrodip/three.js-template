@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { OrbitControls } from "three-full/sources/controls/OrbitControls";
 import Stats from 'three/addons/libs/stats.module.js';
 
+import vertexShader from "./shaders/vertex.glsl?raw";
+import fragmentShader from "./shaders/fragment.glsl?raw";
+
 const canvas = document.getElementById("webgl") as HTMLCanvasElement;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -28,24 +31,23 @@ const uniforms = {
 }
 
 // Create a cube
-const sphereGeometry = new THREE.SphereGeometry(20, 50, 50);
-const sphereMaterial = new THREE.ShaderMaterial({
-  vertexShader: document.getElementById("vertex-shader")!.textContent!,
-  fragmentShader: document.getElementById("fragment-shader")!.textContent!,
+const geometry = new THREE.IcosahedronGeometry(20, 5);
+const material = new THREE.ShaderMaterial({
+  vertexShader: vertexShader,
+  fragmentShader: fragmentShader,
   side: THREE.DoubleSide,
   wireframe: true,
   uniforms,
 })
-const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+const ico = new THREE.Mesh(geometry, material);
+scene.add(ico);
 
-scene.add(sphere);
-
-sphere.rotation.x -= 0.2;
+ico.rotation.x -= 0.2;
 function animate() {
   stats.begin();
   uniforms.u_time.value += 0.05;
   controls.update();
-  sphere.rotation.y += 0.01;
+  ico.rotation.y += 0.01;
 
   renderer.render(scene, camera);
   stats.end();
