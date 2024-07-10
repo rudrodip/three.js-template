@@ -1,8 +1,10 @@
 uniform float u_time;
-uniform vec2 u_resolution;
-uniform vec2 u_mouse;
+
+varying vec3 vPosition;
+varying vec3 vNormal;
+varying vec2 vUv;
+varying float vDisplacement;
 
 void main() {
-  vec2 st = gl_FragCoord.xy / u_resolution;
-  gl_FragColor = vec4(sin(u_time), u_mouse.x, st.y, 1.0);
+  gl_FragColor = vec4(vec3(0.0, 0.3, 0.8), 1.0);
 }
